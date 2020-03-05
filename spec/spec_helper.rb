@@ -14,12 +14,8 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  require 'simplecov'
-  SimpleCov.start
-
   require_relative '../lib/checkout.rb'
   require_relative '../lib/product.rb'
-  require_relative '../lib/promotional_rules.rb'
   require 'factory_bot'
   require 'faker'
   require 'pry'

@@ -46,35 +46,77 @@ RSpec.describe Checkout do
 
   describe "scan" do 
     it 'should scan items' do
-      checkout.scan(product_a)
-      checkout.scan(product_a)
+      2.times do
+        checkout.scan(product_a)
+      end
 
       expect(checkout.total).to eq(60)
     end
 
     it 'applies A Promotion when 3 or more products A are added' do
-      checkout.scan(product_a)
-      checkout.scan(product_a)
-      checkout.scan(product_a)
+      3.times do
+        checkout.scan(product_a)
+      end
 
       expect(checkout.total).to eq(75)
     end
 
     it 'applies B Promotion when 2 or more products B are added' do
-      checkout.scan(product_b)
-      checkout.scan(product_b)
-      checkout.scan(product_b)
+      3.times do
+        checkout.scan(product_b)
+      end
 
       expect(checkout.total).to eq(52.50)
     end
 
     it 'should discount 20 when the price is larger than 150' do
+      
       checkout.scan(product_c)
       checkout.scan(product_c)
       checkout.scan(product_c)
       checkout.scan(product_d)
 
       expect(checkout.total).to eq(145)
+    end
+
+    it 'adds A, B, C and total should be 100' do
+      checkout.scan(product_a)
+      checkout.scan(product_b)
+      checkout.scan(product_c)
+
+      expect(checkout.total).to eq(100)
+    end
+
+    it 'adds B, A, B, A, A and total should be 110' do
+      checkout.scan(product_b)
+      checkout.scan(product_a)
+      checkout.scan(product_b)
+      checkout.scan(product_a)
+      checkout.scan(product_a)
+
+      expect(checkout.total).to eq(110)
+    end
+
+    it 'add C, B, A, A, D, A, B and total should be 155' do
+      checkout.scan(product_c)
+      checkout.scan(product_b)
+      checkout.scan(product_a)
+      checkout.scan(product_a)
+      checkout.scan(product_d)
+      checkout.scan(product_a)
+      checkout.scan(product_b)
+
+      expect(checkout.total).to eq(155)
+    end
+
+    it 'add C, A, D, A, A and total should be 140' do
+      checkout.scan(product_c)
+      checkout.scan(product_a)
+      checkout.scan(product_d)
+      checkout.scan(product_a)
+      checkout.scan(product_a)
+
+      expect(checkout.total).to eq(140)
     end
   end
 end

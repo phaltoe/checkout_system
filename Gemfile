@@ -6,5 +6,4 @@ group :development, :test do
   gem 'faker'
   gem 'pry'
   gem 'rspec'
-  gem 'simplecov', require: false
 end
