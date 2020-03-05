@@ -45,6 +45,18 @@ C, A, D, A, A       | £140
 
 <pre>
 Run bundle
-Run bundle exec rspec
-17 examples, 0 failures
+Run rspec
+Run ruby script.rb
 </pre>
+
+
+## Design
+
+###### For tackling this project, I used TDD and tried to decouple the important parts as:
+- Product: it's only responsability is to create a product
+- Promotional Rules: responsible for generating promotions 
+- Checkout: responsible for reading the products in the cart + applying promotions and calculate the price
+
+When applying the promotion in the cart, we do it dinamically, that way, we can always expand only changing the promotion details in one place(in the promotional rules).
+
+For Testing I followed TDD principles and managed to test all important parts of the system.
